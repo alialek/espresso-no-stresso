@@ -56,12 +56,12 @@ class App extends React.Component {
   }
 
   async componentDidMount() {
-    getUserInfo();
-    if ((await isIntroViewed()) === "viewed") {
-      router.replacePage(PAGE_MAIN);
-    } else {
-      router.replacePage(PAGE_INTRO);
-    }
+    // getUserInfo();
+    // if ((await isIntroViewed()) === "viewed") {
+    //   router.replacePage(PAGE_MAIN);
+    // } else {
+    //   router.replacePage(PAGE_INTRO);
+    // }
 
     auth(window.location.search);
   }
@@ -89,18 +89,18 @@ class App extends React.Component {
                 tabbar={
                   <Tabbar>
                     <TabbarItem
-                      onClick={() => router.replacePage(PAGE_CART)}
-                      selected={VIEW_CART === location.getViewId()}
-                      data-story={VIEW_CART}
+                      onClick={() => router.replacePage(PAGE_MAIN)}
+                      selected={VIEW_MAIN === location.getViewId()}
+                      data-story={VIEW_MAIN}
                       text="Кофейни"
                     >
                       <Icon28StorefrontOutline />
                     </TabbarItem>
 
                     <TabbarItem
-                      onClick={() => router.replacePage(PAGE_MAIN)}
-                      selected={VIEW_MAIN === location.getViewId()}
-                      data-story={VIEW_MAIN}
+                      onClick={() => router.replacePage(PAGE_CART)}
+                      selected={VIEW_CART === location.getViewId()}
+                      data-story={VIEW_CART}
                       text="Корзина"
                     >
                       <Icon28ShoppingCartOutline />

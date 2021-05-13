@@ -3,14 +3,19 @@ import {
   SET_SNACKBAR,
   SET_IS_NOTIFICATIONS_ENABLED,
   SET_IS_ONBOARDING_VIEWED,
+  SET_CART,
+  SET_COFFEESHOP,
+  SET_COFFEESHOPS,
 } from "./actionTypes";
 
 const initialState = {
   colorScheme: "client_light",
   isOnboardingViewed: true,
   isNotificationsEnabled: false,
+  cart: [],
   coffeeShops: [
     {
+      id: 1,
       photo: "https://burobiz-a.akamaihd.net/uploads/images/55072/large_1.jpg",
       title: "Кофейня #1 на восстания",
       description: "Кофейня премиум-класса",
@@ -18,14 +23,16 @@ const initialState = {
     },
   ],
   coffeeShop: {
+    id: 1,
     photo: "https://burobiz-a.akamaihd.net/uploads/images/55072/large_1.jpg",
     title: "Кофейня #1 на восстания",
     description: "Кофейня премиум-класса",
     address: "ул.Восстания, д.1",
-    cart: [{}],
+
     menu: {
       Выпечка: [
         {
+          id: 3,
           title: "Круассан",
           price: "100",
           photo:
@@ -36,6 +43,7 @@ const initialState = {
       ],
       Кофе: [
         {
+          id: 1,
           title: "Капучино",
           price: "100",
           photo: "https://www.weclever.ru/img/actions/88317/1-650x350.jpg",
@@ -43,6 +51,7 @@ const initialState = {
           available: true,
         },
         {
+          id: 2,
           title: "Американо",
           price: "60",
           photo:
@@ -80,6 +89,26 @@ export const dataReducer = (state = initialState, action) => {
       return {
         ...state,
         isNotificationsEnabled: action.payload.data,
+      };
+    }
+    case SET_CART: {
+      console.log(action.payload.data);
+      return {
+        ...state,
+        cart: action.payload.data,
+      };
+    }
+    case SET_COFFEESHOPS: {
+      console.log(action.payload.data);
+      return {
+        ...state,
+        coffeeShops: action.payload.data,
+      };
+    }
+    case SET_COFFEESHOP: {
+      return {
+        ...state,
+        coffeeshop: action.payload.data,
       };
     }
     default: {

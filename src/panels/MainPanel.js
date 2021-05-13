@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
@@ -16,26 +16,16 @@ import "./home.css";
 import { Icon24GearOutline } from "@vkontakte/icons";
 import hi from "../img/hi.png";
 import { PAGE_COFFEESHOP } from "./../router/index";
-const Home = ({ id, coffeeShops }) => {
+import { getShops } from "../api/rest/shop";
+import { setCoffeeshops } from "./../store/data/actions";
+const Home = ({ id, coffeeShops, setCoffeeshops }) => {
   const router = useRouter();
+  useEffect(() => {
+    getShops().then((res) => setCoffeeshops(res.data));
+  }, []);
   return (
     <Panel id={id}>
-      <PanelHeader
-        separator={false}
-        left={
-          <PanelHeaderButton
-            onClick={() =>
-              coffeeShops !== null &&
-              coffeeShops !== "error" &&
-              router.pushModal(MODAL_ABOUT)
-            }
-          >
-            <Icon24GearOutline />
-          </PanelHeaderButton>
-        }
-      >
-        Espresso No Stresso
-      </PanelHeader>
+      <PanelHeader separator={false}>Espresso No Stresso</PanelHeader>
       {coffeeShops !== null &&
         coffeeShops !== "error" &&
         coffeeShops.map((shop, i) => (
@@ -73,7 +63,7 @@ const mapStateToProps = (state) => {
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    ...bindActionCreators({}, dispatch),
+    ...bindActionCreators({ setCoffeeshops }, dispatch),
   };
 }
 
