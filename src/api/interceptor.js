@@ -10,20 +10,20 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   (config) => {
-    // let token;
-    // try {
-    //   token = localStorage.getItem("user_rc") || null;
-    // } catch {
-    //   token = window.token || null;
-    // }
-    // if (config.method !== "get") {
-    //   config.headers.common["Content-Type"] = "application/json";
-    // }
-    // if (token) {
-    //   config.headers.common["Authorization"] = `Bearer ${token}`;
-    // } else {
-    //   delete config.headers.common["Authorization"];
-    // }
+    let token;
+    try {
+      token = localStorage.getItem("user_rc") || null;
+    } catch {
+      token = window.token || null;
+    }
+    if (config.method !== "get") {
+      config.headers.common["Content-Type"] = "application/json";
+    }
+    if (token) {
+      config.headers.common["Authorization"] = `Bearer ${token}`;
+    } else {
+      delete config.headers.common["Authorization"];
+    }
 
     return config;
   },

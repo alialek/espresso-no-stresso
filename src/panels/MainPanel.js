@@ -4,20 +4,18 @@ import { bindActionCreators } from "redux";
 import {
   Panel,
   PanelHeader,
-  PanelHeaderButton,
   Placeholder,
   PanelSpinner,
   ContentCard,
   Div,
 } from "@vkontakte/vkui";
 import { useRouter } from "@happysanta/router";
-import { MODAL_ABOUT } from "../router";
 import "./home.css";
-import { Icon24GearOutline } from "@vkontakte/icons";
 import hi from "../img/hi.png";
-import { PAGE_COFFEESHOP } from "./../router/index";
+import { PAGE_COFFEESHOP } from "../router/index";
 import { getShops } from "../api/rest/shop";
-import { setCoffeeshops } from "./../store/data/actions";
+import { setCoffeeshops } from "../store/data/actions";
+
 const Home = ({ id, coffeeShops, setCoffeeshops }) => {
   const router = useRouter();
   useEffect(() => {

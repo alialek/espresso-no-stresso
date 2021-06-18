@@ -63,7 +63,9 @@ class App extends React.Component {
     //   router.replacePage(PAGE_INTRO);
     // }
 
-    auth(window.location.search);
+    auth(window.location.search).then((res) =>
+      localStorage.setItem("user_ens", res.token),
+    );
   }
 
   render() {
